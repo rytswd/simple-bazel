@@ -3,3 +3,17 @@ load("@bazel_gazelle//:def.bzl", "gazelle")
 
 # gazelle:prefix github.com/rytswd/simple-bazel
 gazelle(name = "gazelle")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["main.go"],
+    importpath = "github.com/rytswd/simple-bazel",
+    visibility = ["//visibility:private"],
+    deps = ["@com_google_cloud_go//language/apiv1:go_default_library"],
+)
+
+go_binary(
+    name = "simple-bazel",
+    embed = [":go_default_library"],
+    visibility = ["//visibility:public"],
+)
