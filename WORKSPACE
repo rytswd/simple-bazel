@@ -1,4 +1,4 @@
-workspace(name = "com_github_rytswd_proj")
+workspace(name = "com_github_rytswd_simple_bazel")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
