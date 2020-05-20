@@ -57,6 +57,8 @@ go_repository(
     name = "com_github_golang_protobuf",
     build_file_proto_mode = "disable_global",
     importpath = "github.com/golang/protobuf",
+    # patch_args = ["-p1"],
+    # patches = ["@io_bazel_rules_go//third_party:com_github_golang_protobuf-extras.patch"],
     sum = "h1:+Z5KGCizgyZCbGh1KZqA0fcLLkwbsjIzS4aV2v7wJX0=",
     version = "v1.4.2",
 )
@@ -651,6 +653,7 @@ go_repository(
 
 go_repository(
     name = "com_github_grpc_ecosystem_grpc_gateway",
+    build_file_generation = "on",
     build_file_proto_mode = "disable_global",
     importpath = "github.com/grpc-ecosystem/grpc-gateway",
     sum = "h1:aiLxiiVzAXb7wb3lAmubA69IokWOoUNe+E7TdGKh8yw=",
