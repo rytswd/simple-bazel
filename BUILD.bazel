@@ -14,6 +14,7 @@ go_library(
     importpath = "github.com/rytswd/simple-bazel",
     visibility = ["//visibility:private"],
     deps = [
+        "//timesvc:go_default_library",
         "@com_google_cloud_go//language/apiv1:go_default_library",
         "@com_google_cloud_go_spanner//:go_default_library",
     ],
