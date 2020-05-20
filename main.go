@@ -6,6 +6,7 @@ import (
 
 	_ "cloud.google.com/go/language/apiv1"
 	"cloud.google.com/go/spanner"
+	_ "github.com/grpc-ecosystem/grpc-gateway/runtime"
 
 	"github.com/rytswd/simple-bazel/timesvc"
 )

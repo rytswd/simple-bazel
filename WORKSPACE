@@ -453,8 +453,8 @@ go_repository(
     name = "in_gopkg_yaml_v2",
     build_file_proto_mode = "disable_global",
     importpath = "gopkg.in/yaml.v2",
-    sum = "h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=",
-    version = "v2.2.2",
+    sum = "h1:fvjTMHxHEw/mxHbtzPi3JCcKXQRAnQTBRo6YCJSVHKI=",
+    version = "v2.2.3",
 )
 
 go_repository(
@@ -631,4 +631,36 @@ go_repository(
     importpath = "google.golang.org/protobuf",
     sum = "h1:4MY060fB1DLGMB/7MBTLnwQUY6+F09GEiz6SsrNqyzM=",
     version = "v1.23.0",
+)
+
+go_repository(
+    name = "com_github_antihax_optional",
+    build_file_proto_mode = "disable_global",
+    importpath = "github.com/antihax/optional",
+    sum = "h1:uZuxRZCz65cG1o6K/xUqImNcYKtmk9ylqaH0itMSvzA=",
+    version = "v0.0.0-20180407024304-ca021399b1a6",
+)
+
+go_repository(
+    name = "com_github_ghodss_yaml",
+    build_file_proto_mode = "disable_global",
+    importpath = "github.com/ghodss/yaml",
+    sum = "h1:wQHKEahhL6wmXdzwWG11gIVCkOv05bNOh+Rxn0yngAk=",
+    version = "v1.0.0",
+)
+
+go_repository(
+    name = "com_github_grpc_ecosystem_grpc_gateway",
+    build_file_proto_mode = "disable_global",
+    importpath = "github.com/grpc-ecosystem/grpc-gateway",
+    sum = "h1:aiLxiiVzAXb7wb3lAmubA69IokWOoUNe+E7TdGKh8yw=",
+    version = "v1.14.5",
+)
+
+go_repository(
+    name = "com_github_rogpeppe_fastuuid",
+    build_file_proto_mode = "disable_global",
+    importpath = "github.com/rogpeppe/fastuuid",
+    sum = "h1:Ppwyp6VYCF1nvBTXL3trRso7mXMlRrw9ooo375wvi2s=",
+    version = "v1.2.0",
 )
