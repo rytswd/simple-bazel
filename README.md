@@ -23,6 +23,11 @@ hello
 
 ## `issue/google-cloud-go-1898` branch
 
+**NOTE**: Fix has been merged to master.
+
+<details>
+<summary>Click to expand the details</summary>
+
 Ref: https://github.com/googleapis/google-cloud-go/issues/1898
 
 For overriding dependencies that are declared within [`go_rules_dependencies`](https://github.com/bazelbuild/rules_go/blob/master/go/private/repositories.bzl#L24), there is a [guideline on overriding dependencies at `bazelbuild/rules_go`](https://github.com/bazelbuild/rules_go/blob/master/go/workspace.rst#overriding-dependencies).
@@ -70,3 +75,11 @@ INFO: 549 processes: 549 darwin-sandbox.
 FAILED: Build did NOT complete successfully
 FAILED: Build did NOT complete successfully
 ```
+
+**Fix**:
+
+- Compile `.proto` with protoc and commit (also correct some error)
+- Run `go mod tidy` to pick up all dependencies
+- Use `--build_file_proto_mode=disable_global` in `update-repos`
+
+</details>

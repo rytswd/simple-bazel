@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package timesvc;
+option go_package = "github.com/rytswd/simple-bazel/timesvc";
+
+import "google/protobuf/timestamp.proto";
+
+service TimeService{
+  rpc GetNow(GetNowRequest) returns (GetNowResponse){}
+}
+
+message GetNowRequest {
+}
+
+message GetNowResponse {
+  google.protobuf.Timestamp now = 1;
+}
