@@ -21,6 +21,33 @@ INFO: Build completed successfully, 533 total actions
 hello
 ```
 
+## `issue/bazelbuild/bazel-gazelle/grpc-gateway-error` branch
+
+Ref: https://github.com/bazelbuild/bazel-gazelle/issues/788
+
+I simply added the following line
+
+```go
+import (
+	...
+	_ "github.com/grpc-ecosystem/grpc-gateway/runtime"
+	...
+)
+```
+
+This caused the following build error, at analysis phase:
+
+```
+$ bazel run simple-bazel
+ERROR: (snip).../external/com_github_grpc_ecosystem_grpc_gateway/runtime/BUILD.bazel:5:1: no such target '@com_github_golang_protobuf//descriptor:go_default_library_gen': target 'go_default_library_gen' not declared in package 'descriptor' (did you mean 'go_default_library'?) defined by (snip).../external/com_github_golang_protobuf/descriptor/BUILD.bazel and referenced by '@com_github_grpc_ecosystem_grpc_gateway//runtime:go_default_library'
+ERROR: (snip).../external/com_github_grpc_ecosystem_grpc_gateway/runtime/BUILD.bazel:5:1: no such target '@com_github_golang_protobuf//jsonpb:go_default_library_gen': target 'go_default_library_gen' not declared in package 'jsonpb' (did you mean 'go_default_library'?) defined by (snip).../external/com_github_golang_protobuf/jsonpb/BUILD.bazel and referenced by '@com_github_grpc_ecosystem_grpc_gateway//runtime:go_default_library'
+ERROR: Analysis of target '//:simple-bazel' failed; build aborted: Analysis failed
+INFO: Elapsed time: 31.438s
+INFO: 0 processes.
+FAILED: Build did NOT complete successfully (177 packages loaded, 1368 targets configured)
+FAILED: Build did NOT complete successfully (177 packages loaded, 1368 targets configured)
+```
+
 ## `issue/google-cloud-go-1898` branch
 
 **NOTE**: Fix has been merged to master.
