@@ -7,10 +7,10 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 # Ref: https://github.com/bazelbuild/rules_go#setup
 http_archive(
     name = "io_bazel_rules_go",
-    sha256 = "142dd33e38b563605f0d20e89d9ef9eda0fc3cb539a14be1bdb1350de2eda659",
+    sha256 = "87f0fb9747854cb76a0a82430adccb6269f7d394237104a4523b51061c469171",
     urls = [
-        "https://github.com/bazelbuild/rules_go/releases/download/v0.22.2/rules_go-v0.22.2.tar.gz",
-        "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.22.2/rules_go-v0.22.2.tar.gz",
+        "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.23.1/rules_go-v0.23.1.tar.gz",
+        "https://github.com/bazelbuild/rules_go/releases/download/v0.23.1/rules_go-v0.23.1.tar.gz",
     ],
 )
 
@@ -57,8 +57,8 @@ go_repository(
     name = "com_github_golang_protobuf",
     build_file_proto_mode = "disable_global",
     importpath = "github.com/golang/protobuf",
-    # patch_args = ["-p1"],
-    # patches = ["@io_bazel_rules_go//third_party:com_github_golang_protobuf-extras.patch"],
+    patch_args = ["-p1"],
+    patches = ["@io_bazel_rules_go//third_party:com_github_golang_protobuf-extras.patch"],
     sum = "h1:+Z5KGCizgyZCbGh1KZqA0fcLLkwbsjIzS4aV2v7wJX0=",
     version = "v1.4.2",
 )
