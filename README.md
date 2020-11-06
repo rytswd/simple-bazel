@@ -25,6 +25,11 @@ hello
 
 Ref: https://github.com/bazelbuild/bazel-gazelle/issues/788
 
+**NOTE**: Recent changes seem to have fixed this issue. The upgraded version is merged to master.
+
+<details>
+<summary>Click to expand the details</summary>
+
 I simply added the following line
 
 ```go
@@ -47,6 +52,8 @@ INFO: 0 processes.
 FAILED: Build did NOT complete successfully (177 packages loaded, 1368 targets configured)
 FAILED: Build did NOT complete successfully (177 packages loaded, 1368 targets configured)
 ```
+
+</details>
 
 ## `issue/google-cloud-go-1898` branch
 
