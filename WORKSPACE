@@ -51,6 +51,8 @@ go_repository(
     name = "com_github_grpc_ecosystem_grpc_gateway_v2",
     build_file_proto_mode = "disable_global",
     importpath = "github.com/grpc-ecosystem/grpc-gateway/v2",
+    patch_args = ["-p1"],
+    patches = ["//bazel-patches:grpc-gateway.patch"],
     sum = "h1:X2vfSnm1WC8HEo0MBHZg2TcuDUHJj6kd1TmEAQncnSA=",
     version = "v2.0.1",
 )
@@ -69,6 +71,7 @@ protobuf_deps()
 go_rules_dependencies()
 
 go_register_toolchains(version = "1.15.5")
+
 ### ---- end of Go deps                                                     ###
 ### ----------------------------------------------------------------------- ###
 
@@ -294,14 +297,6 @@ go_repository(
     importpath = "github.com/googleapis/gax-go/v2",
     sum = "h1:sjZBwGj9Jlw33ImPtvFviGYvseOtDM7hkSKB7+Tv3SM=",
     version = "v2.0.5",
-)
-
-go_repository(
-    name = "com_github_grpc_ecosystem_grpc_gateway",
-    build_file_proto_mode = "disable_global",
-    importpath = "github.com/grpc-ecosystem/grpc-gateway",
-    sum = "h1:gmcG1KaJ57LophUzW0Hy8NmPhnMZb4M0+kPpLofRdBo=",
-    version = "v1.16.0",
 )
 
 go_repository(
