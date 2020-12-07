@@ -1,4 +1,3 @@
-
 diff --git a/repositories.bzl b/repositories.bzl
 index e042a16..221f40e 100644
 --- a/repositories.bzl
@@ -547,10 +546,23 @@ index e042a16..221f40e 100644
          importpath = "golang.org/x/xerrors",
          sum = "h1:go1bK/D/BFZV2I8cIQd1NKEZ+0owSTG1fDTci4IqFcE=",
          version = "v0.0.0-20200804184101-5ec99f83aff1",
-diff --urN a/runtime/BUILD.bazel b/runtime/BUILD.bazel
+diff --git a/runtime/BUILD.bazel b/runtime/BUILD.bazel
+index 68e5f44..23a3dcb 100644
 --- a/runtime/BUILD.bazel
 +++ b/runtime/BUILD.bazel
-@@ -26,12 +26,12 @@ go_library(
+@@ -1,7 +1,5 @@
+ load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+ 
+-package(default_visibility = ["//visibility:public"])
+-
+ go_library(
+     name = "go_default_library",
+     srcs = [
+@@ -23,15 +21,16 @@ go_library(
+         "query.go",
+     ],
+     importpath = "github.com/grpc-ecosystem/grpc-gateway/v2/runtime",
++    visibility = ["//visibility:public"],
      deps = [
          "//internal/httprule:go_default_library",
          "//utilities:go_default_library",
@@ -569,7 +581,15 @@ diff --urN a/runtime/BUILD.bazel b/runtime/BUILD.bazel
          "@org_golang_google_grpc//codes:go_default_library",
          "@org_golang_google_grpc//grpclog:go_default_library",
          "@org_golang_google_grpc//metadata:go_default_library",
-@@ -65,18 +65,18 @@ go_test(
+@@ -45,7 +44,6 @@ go_library(
+ 
+ go_test(
+     name = "go_default_test",
+-    size = "small",
+     srcs = [
+         "context_test.go",
+         "convert_test.go",
+@@ -65,18 +63,18 @@ go_test(
      deps = [
          "//runtime/internal/examplepb:go_default_library",
          "//utilities:go_default_library",
@@ -599,18 +619,18 @@ diff --urN a/runtime/BUILD.bazel b/runtime/BUILD.bazel
          "@org_golang_google_grpc//metadata:go_default_library",
          "@org_golang_google_grpc//status:go_default_library",
 diff --git a/runtime/internal/examplepb/BUILD.bazel b/runtime/internal/examplepb/BUILD.bazel
-index 5fee49c..968acb3 100644
+index 5fee49c..1a219b7 100644
 --- a/runtime/internal/examplepb/BUILD.bazel
 +++ b/runtime/internal/examplepb/BUILD.bazel
-@@ -1,43 +1,32 @@
+@@ -1,43 +1,30 @@
 -load("@rules_proto//proto:defs.bzl", "proto_library")
  load("@io_bazel_rules_go//go:def.bzl", "go_library")
 -load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
  
- # gazelle:exclude non_standard_names_grpc.pb.go
- 
- package(default_visibility = ["//visibility:public"])
- 
+-# gazelle:exclude non_standard_names_grpc.pb.go
+-
+-package(default_visibility = ["//visibility:public"])
+-
 -proto_library(
 -    name = "examplepb_proto",
 +go_library(
@@ -623,10 +643,12 @@ index 5fee49c..968acb3 100644
 +        "example.pb.go",
 +        "example_grpc.pb.go",
 +        "non_standard_names.pb.go",
++        "non_standard_names_grpc.pb.go",
 +        "proto2.pb.go",
 +        "proto3.pb.go",
      ],
 +    importpath = "github.com/grpc-ecosystem/grpc-gateway/v2/runtime/internal/examplepb",
++    visibility = ["//runtime:__subpackages__"],
      deps = [
 -        "@com_google_protobuf//:duration_proto",
 -        "@com_google_protobuf//:empty_proto",
