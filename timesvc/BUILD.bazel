@@ -2,15 +2,25 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
 go_library(
     name = "go_default_library",
-    srcs = ["x.pb.go"],
+    srcs = [
+        "x.pb.go",
+        "x.pb.gw.go",
+        "x_grpc.pb.go",
+    ],
     importpath = "github.com/rytswd/simple-bazel/timesvc",
     visibility = ["//visibility:public"],
     deps = [
         "@com_github_golang_protobuf//proto:go_default_library",
         "@com_github_golang_protobuf//ptypes/timestamp:go_default_library",
+        "@com_github_grpc_ecosystem_grpc_gateway_v2//runtime:go_default_library",
+        "@com_github_grpc_ecosystem_grpc_gateway_v2//utilities:go_default_library",
+        "@org_golang_google_genproto//googleapis/api/annotations:go_default_library",
         "@org_golang_google_grpc//:go_default_library",
         "@org_golang_google_grpc//codes:go_default_library",
+        "@org_golang_google_grpc//grpclog:go_default_library",
+        "@org_golang_google_grpc//metadata:go_default_library",
         "@org_golang_google_grpc//status:go_default_library",
+        "@org_golang_google_protobuf//proto:go_default_library",
         "@org_golang_google_protobuf//reflect/protoreflect:go_default_library",
         "@org_golang_google_protobuf//runtime/protoimpl:go_default_library",
     ],

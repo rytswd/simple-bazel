@@ -1,17 +1,24 @@
 workspace(name = "com_github_rytswd_simple_bazel")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 ### ---- http_archive ----------------------------------------------------- ###
 # Go
 # Ref: https://github.com/bazelbuild/rules_go#setup
-http_archive(
+# http_archive(
+#     name = "io_bazel_rules_go",
+#     sha256 = "d1ffd055969c8f8d431e2d439813e42326961d0942bdf734d2c95dc30c369566",
+#     urls = [
+#         "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.24.5/rules_go-v0.24.5.tar.gz",
+#         "https://github.com/bazelbuild/rules_go/releases/download/v0.24.5/rules_go-v0.24.5.tar.gz",
+#     ],
+# )
+git_repository(
     name = "io_bazel_rules_go",
-    sha256 = "d1ffd055969c8f8d431e2d439813e42326961d0942bdf734d2c95dc30c369566",
-    urls = [
-        "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.24.5/rules_go-v0.24.5.tar.gz",
-        "https://github.com/bazelbuild/rules_go/releases/download/v0.24.5/rules_go-v0.24.5.tar.gz",
-    ],
+    commit = "983d48f9d2695a0a9d898bd85dde90d410629b1b",
+    remote = "https://github.com/bazelbuild/rules_go",
+    shallow_since = "1605912886 -0500",
 )
 
 # Gazelle
@@ -40,12 +47,31 @@ load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_depe
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
 load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
 
+go_repository(
+    name = "com_github_grpc_ecosystem_grpc_gateway_v2",
+    build_file_proto_mode = "disable_global",
+    importpath = "github.com/grpc-ecosystem/grpc-gateway/v2",
+    patch_args = ["-p1"],
+    patches = ["//bazel-patches:grpc-gateway.patch"],
+    sum = "h1:X2vfSnm1WC8HEo0MBHZg2TcuDUHJj6kd1TmEAQncnSA=",
+    version = "v2.0.1",
+)
+
+go_repository(
+    name = "org_golang_google_grpc_cmd_protoc_gen_go_grpc",
+    build_file_proto_mode = "disable_global",
+    importpath = "google.golang.org/grpc/cmd/protoc-gen-go-grpc",
+    sum = "h1:M8spwkmx0pHrPq+uMdl22w5CvJ/Y+oAJTIs9oGoCpOE=",
+    version = "v1.0.1",
+)
+
 protobuf_deps()
 
 # As per the above reference, this should be called after `go_repository` calls
 go_rules_dependencies()
 
-go_register_toolchains()
+go_register_toolchains(version = "1.15.5")
+
 ### ---- end of Go deps                                                     ###
 ### ----------------------------------------------------------------------- ###
 
@@ -271,14 +297,6 @@ go_repository(
     importpath = "github.com/googleapis/gax-go/v2",
     sum = "h1:sjZBwGj9Jlw33ImPtvFviGYvseOtDM7hkSKB7+Tv3SM=",
     version = "v2.0.5",
-)
-
-go_repository(
-    name = "com_github_grpc_ecosystem_grpc_gateway",
-    build_file_proto_mode = "disable_global",
-    importpath = "github.com/grpc-ecosystem/grpc-gateway",
-    sum = "h1:gmcG1KaJ57LophUzW0Hy8NmPhnMZb4M0+kPpLofRdBo=",
-    version = "v1.16.0",
 )
 
 go_repository(
@@ -533,8 +551,8 @@ go_repository(
     name = "org_golang_google_grpc",
     build_file_proto_mode = "disable_global",
     importpath = "google.golang.org/grpc",
-    sum = "h1:DGeFlSan2f+WEtCERJ4J9GJWk15TxUi8QGagfI87Xyc=",
-    version = "v1.33.1",
+    sum = "h1:EQyQC3sa8M+p6Ulc8yy9SWSS2GVwyRc83gAbG8lrl4o=",
+    version = "v1.33.2",
 )
 
 go_repository(

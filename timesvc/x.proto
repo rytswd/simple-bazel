@@ -4,14 +4,17 @@ package timesvc;
 option go_package = "github.com/rytswd/simple-bazel/timesvc";
 
 import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
 
-service TimeService{
-  rpc GetNow(GetNowRequest) returns (GetNowResponse){}
+service TimeService {
+  rpc GetNow(GetNowRequest) returns (GetNowResponse) {
+    option (google.api.http) = {
+      post : "/v1/get-now"
+      body : "*"
+    };
+  }
 }
 
-message GetNowRequest {
-}
+message GetNowRequest {}
 
-message GetNowResponse {
-  google.protobuf.Timestamp now = 1;
-}
+message GetNowResponse { google.protobuf.Timestamp now = 1; }
